@@ -52,4 +52,4 @@ do_connect(Host, Port, Timeout, true, Opts) ->
   {ok, _} = application:ensure_all_started(ssl),
   ssl:connect(Host, Port, [binary, {active, true}, {packet, raw}] ++ Opts, Timeout);
 do_connect(Host, Port, Timeout, false, _) ->
-  gen_tcp:connect(Host, Port, [binary, {active, true}, {packet, raw}], Timeout).
+  gen_tcp:connect(Host, Port, [binary, {active, true}, {packet, raw}, {recbuf, 128000}], Timeout).
