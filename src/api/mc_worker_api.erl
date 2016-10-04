@@ -174,7 +174,9 @@ find(Connection, Coll, Selector, Args) ->
   Projector = maps:get(projector, Args, #{}),
   Skip = maps:get(skip, Args, 0),
   BatchSize = maps:get(batchsize, Args, 0),
+  NoCursorTimeout = maps:get(nocursortimeout, Args, false),
   mc_action_man:read(Connection, #'query'{
+    nocursortimeout = NoCursorTimeout,
     collection = Coll,
     selector = Selector,
     projector = Projector,
